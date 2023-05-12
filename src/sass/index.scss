@@ -1,2 +1,7 @@
-@import "./components/header";
+// variables y mixins
 @import "./utils/variables.scss";
+
+//componentes
+@import "./components/headerLib";
+@import './components/headerPr';
+
