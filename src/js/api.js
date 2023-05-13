@@ -12,3 +12,18 @@ export async function getTrending(page = 1) {
     })
     .catch(error => console.log(error));
 }
+
+
+export async function searchMovieName(movieName) {
+  const apiKey = '2e9f8fc9479fa19131d9c8fc8ea7c110';
+  const apiUrl = 'https://api.themoviedb.org/3';
+
+
+  const url = `${MAIN_URL}/search/movie?api_key=${API_KEY}&query=${movieName}&language=en-US&page=1`;
+  return await axios
+    .get(url)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => console.log(error));
+}
