@@ -12,7 +12,6 @@ getTrending().then(data => {
     createGalleryPage(data.results)
   );
 });
-
 const input = document.querySelector('.search__input');
 const btnSearch = document.querySelector('.bx-search');
 
