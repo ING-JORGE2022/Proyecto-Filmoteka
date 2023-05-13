@@ -11,7 +11,6 @@ getTrending().then(data => {
     'beforeend',
     createGalleryPage(data.results)
   );
-
 });
 
 const input = document.querySelector('.search__input');
