@@ -696,22 +696,6 @@ body.show-modal {
     height: 44px;
   }
 }
-.modal__btn-trailer {
-  margin-bottom: 20px;
-  min-width: 150px;
-  gap: 5px;
-}
-@media screen and (min-width: 1280px) {
-  .modal__btn-trailer {
-    margin-left: 25px;
-  }
-}
-.modal__icon-youtube {
-  width: 30px;
-}
-.modal__trailer {
-  padding-top: 16px;
-}
 
 body.show-modal .modal {
   opacity: 1;
@@ -737,6 +721,12 @@ body.show-modal .modal .modal__empty {
   margin: 50px auto;
   font-size: 18px;
   font-weight: 500;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .container, .gallery__container {

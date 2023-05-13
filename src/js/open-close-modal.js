@@ -1,5 +1,5 @@
 import refs from './ref';
-// import { loadIntoModal } from './load-into-modal';
+import { loadIntoModal } from './load-into-modal';
 
 refs.gallery.addEventListener('click', onOpenModal);
 refs.closeModalBtn.addEventListener('click', onCloseModal);
@@ -15,7 +15,7 @@ function onOpenModal(event) {
   const movieId = getParentalEl.dataset.movie;
 
   //   console.log(movieId);
-  //   loadIntoModal(movieId);
+    loadIntoModal(movieId);
 
   document.body.classList.add('show-modal');
   window.addEventListener('keydown', onEscKeyPress);

@@ -250,23 +250,6 @@ body.show-modal {
     }
   }
 
-  &__btn-trailer {
-    margin-bottom: 20px;
-    min-width: 150px;
-    gap: 5px;
-
-    @media screen and (min-width: 1280px) {
-      margin-left: 25px;
-    }
-  }
-
-  &__icon-youtube {
-    width: 30px;
-  }
-
-  &__trailer {
-    padding-top: 16px;
-  }
 }
 
 body.show-modal .modal {
@@ -294,4 +277,10 @@ body.show-modal .modal {
     font-size: 18px;
     font-weight: 500;
   }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

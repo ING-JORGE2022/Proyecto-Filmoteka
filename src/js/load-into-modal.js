@@ -1,46 +1,22 @@
-import * as basicLightbox from 'basiclightbox';
-import { getInfoMovie, getVideos } from './api';
 import refs from './ref';
-import { onAddToWatched, onAddToQueue } from './add-to-watched&queue';
+import { onAddToWatched, onAddToQueue } from './add-to-watched-queue';
 import {
   watched,
   queue,
-  setQueueLocalStoradge,
-  setWatchedLocalStoradge,
+  setQueueLocalStorage,
+  setWatchedLocalStorage,
 } from './set-get-local-storage';
 import noposter from '../images/noposter.jpg';
-import { showHideLoader } from './loader';
-import { getArrayofMovies } from './api';
-import { createLibraryMarkup } from './create-library-markup';
-import youtube from '../images/youtube.svg';
-
-let keyTrailer = '';
+import { getInfoMovie } from './api';
+import colors from './colors';
 
 export function loadIntoModal(id) {
-  showHideLoader(refs.loaderModal);
   const film = getInfoMovie(id).then(data => {
-    showHideLoader(refs.loaderModal);
-    getVideos(id)
-      .then(movies => {
-        if (movies && movies.length) {
-          const objTrailer = movies.find(movie => movie.type === 'Trailer');
-
-          if (objTrailer && objTrailer.type !== 'Trailer') {
-            return;
-          }
-          keyTrailer = objTrailer ? objTrailer.key : '';
-        }
-
-        refresh(data, id, keyTrailer);
-        keyTrailer = '';
-      })
-      .catch(error => {
-        refresh(data, id);
-      });
+    refresh(data, id);
   });
 }
 
-function refresh(data, id, keyTrailer = '') {
+function refresh(data, id) {
   if (!createFilmCardMarkup(data)) {
     return;
   }
@@ -50,78 +26,49 @@ function refresh(data, id, keyTrailer = '') {
 
   if (watched.includes(id)) {
     addWatchedRef.textContent = 'Is in watched';
-    addWatchedRef.style.backgroundColor = '#ff6b01';
-    addWatchedRef.style.color = '#ffffff';
+    addWatchedRef.style.backgroundColor = colors.colorAccentSec;
+    addWatchedRef.style.color = colors.colorHeader;
+    addWatchedRef.style.border = 'none';
   }
   if (queue.includes(id)) {
     addQueueRef.textContent = 'Is in queue';
-    addQueueRef.style.backgroundColor = '#ff6b01';
-    addQueueRef.style.color = '#ffffff';
+    addQueueRef.style.backgroundColor = colors.colorAccentSec;
+    addQueueRef.style.color = colors.colorHeader;
+    addQueueRef.style.border = 'none';
   }
 
   addWatchedRef.addEventListener('click', () => {
     if (watched.includes(id)) {
       watched.splice(watched.indexOf(id), 1);
-      setWatchedLocalStoradge(watched);
-      addWatchedRef.style.backgroundColor = '#ffffff';
-
-      getArrayofMovies(watched)
-        .then(data => {
-          if (refs.library) {
-            refs.library.innerHTML = createLibraryMarkup(data);
-          }
-        })
-        .catch(er => console.log(er));
+      setWatchedLocalStorage(watched);
+        addWatchedRef.style.backgroundColor = colors.colorHeader;
+        //HACER FUNCION UPDATE LIBRARY
     } else {
       onAddToWatched(id);
-      setWatchedLocalStoradge(watched);
+      //   setWatchedLocalStorage(watched);
     }
-
-    refs.modalRef.innerHTML = '';
-    refresh(data, id, keyTrailer);
+    refs.modalContent.innerHTML = '';
+    refresh(data, id);
   });
 
   addQueueRef.addEventListener('click', () => {
     if (queue.includes(id)) {
       queue.splice(queue.indexOf(id), 1);
-      setQueueLocalStoradge(queue);
-      addQueueRef.style.backgroundColor = '#ffffff';
-
-      getArrayofMovies(queue).then(data => {
-        if (refs.library) {
-          refs.library.innerHTML = createLibraryMarkup(data);
-        }
-      });
+      setQueueLocalStorage(queue);
+      addQueueRef.style.backgroundColor = colors.colorHeader;
     } else {
       onAddToQueue(id);
-      setQueueLocalStoradge(queue);
+      //   setQueueLocalStorage(queue);
     }
-
-    refs.modalRef.innerHTML = '';
-    refresh(data, id, keyTrailer);
+    refs.modalContent.innerHTML = '';
+    refresh(data, id);
   });
-  const trailerRef = document.querySelector('[data-btn=watchTrailer]');
-  if (!keyTrailer) {
-    trailerRef.classList.add('is-hidden');
-    // trailerRef.setAttribute('hidden', 'true');
-  }
-
-  trailerRef.onclick = () => {
-    basicLightbox
-      .create(
-        `<iframe width="640" height="360"
-        src="https://www.youtube.com/embed/${keyTrailer}"
-        title="" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-      )
-      .show();
-  };
 }
 
 function createFilmCardMarkup(data) {
   let status = true;
   if (!data) {
-    refs.modalRef.innerHTML =
+    refs.modalContent.innerHTML =
       '<div class="modal__empty">Sorry, info is unavailable</div>';
     status = false;
     return;
@@ -195,26 +142,14 @@ function createFilmCardMarkup(data) {
           </button>
         </li>
       </ul>
-
-      <div class="modal__trailer">
-        <button
-          type="button"
-          class="modal__btn modal__btn-trailer"
-          data-btn="watchTrailer"
-        >
-          <img class="modal__icon-youtube" src="${youtube}" alt="youtube" />
-          Watch Trailer
-        </button>
-      </div>
     </div>`;
 
-  refs.modalRef.innerHTML = markup;
-  refs.teamRef.innerHTML = '';
+  refs.modalContent.innerHTML = markup;
   const voteRef = document.querySelector('.modal__list-vote');
 
   if (data.vote_average < 6) {
-    voteRef.style.backgroundColor = '#ffffff';
-    voteRef.style.color = '#000000';
+    voteRef.style.backgroundColor = colors.colorHeader;
+    voteRef.style.color = colors.colorBody;
   }
 
   return status;
