@@ -10,5 +10,4 @@ getTrending().then(data => {
     'beforeend',
     createGalleryPage(data.results)
   );
-
 });

@@ -8,14 +8,12 @@
   }
   
   .header {
-  transition: top 0.3s ease;
-  }
-  
-  .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1;
+    transition: top 0.3s ease;
   }
   #ancho{
     max-width: 100vw;
