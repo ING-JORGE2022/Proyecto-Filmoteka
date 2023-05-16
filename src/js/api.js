@@ -36,3 +36,15 @@ export async function getArrayofMovies(array) {
   const resultData = await Promise.all(arrayOfMovies);
   return resultData;
 }
+
+export async function searchMovieName(movieName) {
+
+  const url = `${MAIN_URL}/search/movie?api_key=${API_KEY}&query=${movieName}&language=en-US&page=1`;
+  return await axios
+    .get(url)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => console.log(error));
+}
+
