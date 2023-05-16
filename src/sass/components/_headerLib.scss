@@ -44,6 +44,12 @@
   
       & .logo__text {
         font-size: 30px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      & .logo__text--ref{
+        text-decoration: none;
       }
   
       & img {
