@@ -6,7 +6,7 @@
   * {
   transition: all 0.3s ease;
   }
-  
+
   .header {
     position: fixed;
     top: 0;
@@ -27,7 +27,7 @@
     background-image: url("../images/Rectangle 1.jpg");
     height: 230px;
   }
-  
+
    .nav {
     padding: 41px 71px 0 71px;
     display: flex;
@@ -54,7 +54,7 @@
   .logo__filmoteka img {
     height: 50px;
   }
-  
+
   .search__header {
     display: flex;
     align-items: center;
@@ -72,29 +72,29 @@
     border-bottom: 2px solid #ffff;
     outline: none;
   }
-  
+
   .search__header i {
     font-size: 20px;
     margin-left: 10px;
     color: #ccc;
   }
-  
+
   .search__header .search__input:focus {
     outline: none;
   }
-  
+
   .search__header .search__input:focus + i {
     color: #fff;
   }
   .search__header .search__input:valid {
     color: #fff;
   }
-  
+
   .menu__header {
     display: flex;
     list-style: none;
   }
-  
+
   .menu__header li {
     margin-left: 39px;
   }
@@ -105,10 +105,10 @@
     font-weight: bold;
     transition: color 0.3s ease;
   }
-  
+
   .menu__header a:hover {
     color: #ccc;
-  } 
+  }
   .menu__header .active a:first-child{
     border-bottom: 3px solid  #FF6B08;
     margin-right: 20px;
@@ -116,7 +116,7 @@
   @media (max-width: 768px) {
   .nav {
     padding: 40px;
-  
+
   }
   .search__header i{
       position: absolute; /* Añadimos posición absoluta */
@@ -140,7 +140,7 @@
     margin-left: 10px;
   }
   }
-  
+
   @media (min-width: 325px) and (max-width: 550px) {
   .nav{
     position: relative;
@@ -150,7 +150,7 @@
     right: 10px;
   }
   }
-  
+
   @media (max-width: 320px) {
   .nav {
     padding-top: 41px;
