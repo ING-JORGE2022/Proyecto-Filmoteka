@@ -2,6 +2,10 @@ import { createLibraryMarkup } from './create-library-markup';
 import refs from './ref';
 import { watched, queue } from './set-get-local-storage';
 import { getArrayofMovies } from './api';
+import Notiflix from 'notiflix';
+import { notiflixSetup } from './notiflix-setup';
+import colors from './colors';
+
 
 const watchedRef = document.querySelector('[data-id="watched-btn"]');
 const queueRef = document.querySelector('[data-id="queue-btn"]');
@@ -9,28 +13,32 @@ const queueRef = document.querySelector('[data-id="queue-btn"]');
  watchedRef.addEventListener('click', showWatched);
 queueRef.addEventListener('click', showQueue);
 
+notiflixSetup();
+
 function showWatched() {
-  if (!watchedRef.classList.contains('header-movie-button--active')) {
-    console.log("aqui stoy")
-    watchedRef.classList.add('header-movie-button--active');
+  if (!watchedRef.classList.contains('')) {
+    watchedRef.classList.add('search__button__active');
     watchedRef.disabled = true;
-    //cambiar los atributos para que cambie el color de los botones
-    //watchedRef.setAttribute('style','background-color: transparent; color: #fff; border: 2px solid #fff');
-    //  queue.classList.remove('search__button');
-    // queueRef.classList.remove('header-movie-button--active');
+    queueRef.classList.remove('search__button__active');
     queueRef.disabled = false;
   }
-  
-
-  console.log(`array watched :[${watched}] `)
 
   if (!watched.length) {
+    
+    refs.library.classList.add('empty__library')
+    Notiflix.Report.info(
+      'Your Watched library is empty',
+      ' Here you will see the movies that you add from home page',
+      'Got it!',
+      );
+
     refs.library.innerHTML = `
-      <p class="">
-        "Oops! Your "watched" library is empty!"
+      <p>
+        "Your Watched library is empty"
       </p>`;
     return;
   }
+  refs.library.classList.remove('empty__library');
   getArrayofMovies(watched)
     .then(data => {
       refs.library.innerHTML = createLibraryMarkup(data);
@@ -40,20 +48,26 @@ function showWatched() {
 
 function showQueue() {
   if (!queueRef.classList.contains('header-movie-button--active')) {
-    queueRef.classList.add('search__button__act');
+    queueRef.classList.add('search__button__active');
     queueRef.disabled = true;
-    watchedRef.classList.remove('header-movie-button--active');
+    watchedRef.classList.remove('search__button__active');
     watchedRef.disabled = false;
   }
-  console.log(queue)
 
   if (!queue.length) {
+    Notiflix.Report.info(
+      'Your Queue library is empty',
+      ' Here you will see the movies that you add from home page',
+      'Got it!',
+      );
+    refs.library.classList.add('empty__library')
     refs.library.innerHTML = `
-    <p class="">
-        "Oops! Your "Queue" library is empty!"
+    <p class="empty__library">
+        "Your Queue library is empty"
     </p>`;
     return;
   }
+  refs.library.classList.remove('empty__library');
   getArrayofMovies(queue).then(data => {
 
     refs.library.innerHTML = createLibraryMarkup(data);

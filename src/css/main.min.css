@@ -21,6 +21,11 @@ h1 {
   }
 }
 
+.empty__library {
+  display: flex;
+  justify-content: center;
+}
+
 .gallery__container {
   list-style: none;
   display: flex;
@@ -181,14 +186,29 @@ h1 {
 .header__search .search__button {
   width: 136px;
   height: 44px;
-  background-color: #FF6B01;
-  border-style: none;
+  background-color: transparent;
+  border: 2px solid #fff;
   outline: none;
   margin-left: 30px;
   border-radius: 5px;
   color: #fff;
 }
 .header__search .search__button:hover {
+  background-color: #ff6b01;
+  border-style: none;
+  color: #fff;
+}
+.header__search .search__button__active {
+  width: 136px;
+  height: 44px;
+  background-color: #ff6b01;
+  border-style: none;
+  outline: none;
+  margin-left: 30px;
+  border-radius: 5px;
+  color: #fff;
+}
+.header__search .search__button__active:hover {
   background-color: transparent;
   border: 2px solid #fff;
   color: #fff;

@@ -67,7 +67,23 @@
       & .search__button {
         width: 136px;
         height: 44px;
-        background-color: #FF6B01;
+        background-color: transparent;
+        border: 2px solid #fff;
+        outline: none;
+        margin-left: 30px;
+        border-radius: 5px;
+        color: #fff;
+  
+        &:hover {
+          background-color: $color-accent-sec;
+          border-style: none;
+          color: #fff;
+        }
+      }
+      & .search__button__active {
+        width: 136px;
+        height: 44px;
+        background-color: $color-accent-sec;
         border-style: none;
         outline: none;
         margin-left: 30px;
