@@ -12,10 +12,12 @@ import { createLibraryMarkup } from './create-library-markup';
 import colors from './colors';
 import Notiflix from 'notiflix';
 import { notiflixSetup } from './notiflix-setup';
-import {onCloseModal} from './open-close-modal';
+import { onCloseModal } from './open-close-modal';
 
 notiflixSetup();
-
+const watchedRef = document.querySelector('[data-id="watched-btn"]');
+const queueRef = document.querySelector('[data-id="queue-btn"]');
+const headerRef = document.querySelector('.header__container');
 export function loadIntoModal(id) {
   const film = getInfoMovie(id).then(data => {
     refresh(data, id);
@@ -47,36 +49,48 @@ function refresh(data, id) {
     if (watched.includes(id)) {
       watched.splice(watched.indexOf(id), 1);
       setWatchedLocalStorage(watched);
-        addWatchedRef.style.backgroundColor = colors.colorHeader;
-        //HACER FUNCION UPDATE LIBRARY
-        if (!watched.length) {
-          document.body.classList.remove('show-modal');
-          refs.modalContent.innerHTML = '';
-          Notiflix.Report.info(
-            'Now your Watched library is empty',
-            ' You can add movies again from home page',
-            'Got it!',
+      addWatchedRef.style.backgroundColor = colors.colorHeader;
+      //HACER FUNCION UPDATE LIBRARY
+      if (!watched.length) {
+        if (headerRef.classList.contains('hero--lib')) {
+          if (watchedRef.classList.contains('search__button__active')) {
+            document.body.classList.remove('show-modal');
+            refs.modalContent.innerHTML = '';
+            Notiflix.Report.info(
+              'Now your Watched library is empty',
+              ' You can add movies again from home page',
+              'Got it!'
             );
-
-          refs.library.classList.add('empty__library')
-          refs.library.innerHTML = `
-            <p>
-              "Your Watched" library is empty"
-            </p>`;
-          return;
+            refs.library.classList.add('empty__library');
+            refs.library.innerHTML = `
+              <p>
+                "Your Watched" library is empty"
+              </p>`;
+          }
         }
-        getArrayofMovies(watched)
-      .then(data => {
-        refs.library.innerHTML = createLibraryMarkup(data);
-      })
-    .catch(er => console.log(er));
+
+        return;
+      }
+      if (headerRef.classList.contains('hero--lib')) {
+        if (watchedRef.classList.contains('search__button__active')) {
+          getArrayofMovies(watched)
+            .then(data => {
+              refs.library.innerHTML = createLibraryMarkup(data);
+            })
+            .catch(er => console.log(er));
+        }
+      }
     } else {
       onAddToWatched(id);
-      getArrayofMovies(watched)
-      .then(data => {
-        refs.library.innerHTML = createLibraryMarkup(data);
-      })
-    .catch(er => console.log(er));
+      if (headerRef.classList.contains('hero--lib')) {
+        if (watchedRef.classList.contains('search__button__active')) {
+          getArrayofMovies(watched)
+            .then(data => {
+              refs.library.innerHTML = createLibraryMarkup(data);
+            })
+            .catch(er => console.log(er));
+        }
+      }
       //   setWatchedLocalStorage(watched);
     }
     refs.modalContent.innerHTML = '';
@@ -89,27 +103,46 @@ function refresh(data, id) {
       setQueueLocalStorage(queue);
       addQueueRef.style.backgroundColor = colors.colorHeader;
       if (!queue.length) {
-        Notiflix.Report.info(
-          'Now your Queue library is empty',
-          ' You can add movies again from home page',
-          'Got it!',
-          );
-        refs.library.classList.add('empty__library')
-        refs.library.innerHTML = `
-        <p class="empty__library">
-            "Your Queue library is empty"
-        </p>`;
+        if (headerRef.classList.contains('hero--lib')) {
+          if (queueRef.classList.contains('search__button__active')) {
+            document.body.classList.remove('show-modal');
+            refs.modalContent.innerHTML = '';
+            Notiflix.Report.info(
+              'Now your Queue library is empty',
+              ' You can add movies again from home page',
+              'Got it!'
+            );
+            refs.library.classList.add('empty__library');
+            refs.library.innerHTML = `
+          <p class="empty__library">
+              "Your Queue library is empty"
+          </p>`;
+          }
+        }
+
         return;
       }
-      
-      getArrayofMovies(queue)
-      .then(data => {
-        refs.library.innerHTML = createLibraryMarkup(data);
-      })
-    .catch(er => console.log(er));
+      if (headerRef.classList.contains('hero--lib')) {
+        if (queueRef.classList.contains('search__button__active')) {
+          getArrayofMovies(queue)
+            .then(data => {
+              refs.library.innerHTML = createLibraryMarkup(data);
+            })
+            .catch(er => console.log(er));
+        }
+      }
     } else {
       onAddToQueue(id);
       //   setQueueLocalStorage(queue);
+      if (headerRef.classList.contains('hero--lib')) {
+        if (queueRef.classList.contains('search__button__active')) {
+          getArrayofMovies(queue)
+            .then(data => {
+              refs.library.innerHTML = createLibraryMarkup(data);
+            })
+            .catch(er => console.log(er));
+        }
+      }
     }
     refs.modalContent.innerHTML = '';
     refresh(data, id);
