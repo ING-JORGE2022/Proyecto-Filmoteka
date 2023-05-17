@@ -12,7 +12,6 @@ import { createLibraryMarkup } from './create-library-markup';
 import colors from './colors';
 import Notiflix from 'notiflix';
 import { notiflixSetup } from './notiflix-setup';
-import { onCloseModal } from './open-close-modal';
 
 notiflixSetup();
 const watchedRef = document.querySelector('[data-id="watched-btn"]');
@@ -68,7 +67,8 @@ function refresh(data, id) {
               </p>`;
           }
         }
-
+         refs.modalContent.innerHTML = '';
+         refresh(data, id);
         return;
       }
       if (headerRef.classList.contains('hero--lib')) {
@@ -119,7 +119,8 @@ function refresh(data, id) {
           </p>`;
           }
         }
-
+         refs.modalContent.innerHTML = '';
+         refresh(data, id);
         return;
       }
       if (headerRef.classList.contains('hero--lib')) {
