@@ -4,21 +4,22 @@
 @import './components/gallery-card';
 @import './components/headerLib';
 @import './components/headerPr';
+@import './components/botton-to-top';
 @import './components/film-modal';
 
 .container {
     margin: 0 auto;
-  
+
     @media (max-width: 767.98px) {
       max-width: 320px;
       padding: 0 20px;
     }
-  
+
     @media (min-width: 768px) and (max-width: 1279.98px) {
       width: 768px;
       padding: 0 32px;
     }
-  
+
     @media (min-width: 1280px) {
       width: 1280px;
       padding: 0 32px;
