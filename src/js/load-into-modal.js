@@ -7,7 +7,8 @@ import {
   setWatchedLocalStorage,
 } from './set-get-local-storage';
 import noposter from '../images/noposter.jpg';
-import { getInfoMovie } from './api';
+import { getInfoMovie, getArrayofMovies } from './api';
+import { createLibraryMarkup } from './create-library-markup';
 import colors from './colors';
 
 export function loadIntoModal(id) {
@@ -43,6 +44,12 @@ function refresh(data, id) {
       setWatchedLocalStorage(watched);
         addWatchedRef.style.backgroundColor = colors.colorHeader;
         //HACER FUNCION UPDATE LIBRARY
+        getArrayofMovies(watched)
+      .then(data => {
+        refs.library.innerHTML = createLibraryMarkup(data);
+        console.log("aqui estoy")
+      })
+    .catch(er => console.log(er));
     } else {
       onAddToWatched(id);
       //   setWatchedLocalStorage(watched);
@@ -56,6 +63,12 @@ function refresh(data, id) {
       queue.splice(queue.indexOf(id), 1);
       setQueueLocalStorage(queue);
       addQueueRef.style.backgroundColor = colors.colorHeader;
+      
+      getArrayofMovies(queue)
+      .then(data => {
+        refs.library.innerHTML = createLibraryMarkup(data);
+      })
+    .catch(er => console.log(er));
     } else {
       onAddToQueue(id);
       //   setQueueLocalStorage(queue);
