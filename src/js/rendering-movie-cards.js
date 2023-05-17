@@ -3,7 +3,8 @@ import { searchMovieName } from './api';
 import { createGalleryPage } from './create-gallery-page';
 import { createPagination } from './pagination';
 import refs from './ref';
-
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix';
 
 const galleryMovie = document.querySelector('.gallery-js');
 // showHideLoader(refs.loader);
@@ -37,10 +38,12 @@ getTrending().then(data => {
       .then(data => {
         if (!data.total_results) {
           setTimeout(() => {
-            console.log("Search result found");
-          }, 5000);
-          console.log('Search result not successful.');
+            Notify.failure("Search result not succesful");
+          }, 300);
           return;
+        }
+        else{
+          Notify.info('Hurrah! Search successful 🎉')
         }
         console.log(data.results);
         galleryMovie.innerHTML = "";
