@@ -21,7 +21,9 @@
   .container {
     margin: 0 auto;
   }
-
+  .header.hidden {
+    top: -1000px; 
+  }
   .hero{
     background-size: cover;
     background-image: url("../images/Rectangle 1.jpg");
