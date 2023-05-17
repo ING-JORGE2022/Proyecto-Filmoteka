@@ -136,7 +136,6 @@ h1 {
 
 .header {
   transition: top 0.3s ease;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
