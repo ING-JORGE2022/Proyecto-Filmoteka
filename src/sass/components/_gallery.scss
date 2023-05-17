@@ -13,7 +13,10 @@
       padding-left: 105px;
     }
   }
-
+  .empty__library{
+    display: flex;
+    justify-content: center;
+  }
   .gallery__container {
     @extend .container;
 

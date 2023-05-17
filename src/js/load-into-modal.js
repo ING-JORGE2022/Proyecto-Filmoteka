@@ -10,6 +10,11 @@ import noposter from '../images/noposter.jpg';
 import { getInfoMovie, getArrayofMovies } from './api';
 import { createLibraryMarkup } from './create-library-markup';
 import colors from './colors';
+import Notiflix from 'notiflix';
+import { notiflixSetup } from './notiflix-setup';
+import {onCloseModal} from './open-close-modal';
+
+notiflixSetup();
 
 export function loadIntoModal(id) {
   const film = getInfoMovie(id).then(data => {
@@ -44,14 +49,34 @@ function refresh(data, id) {
       setWatchedLocalStorage(watched);
         addWatchedRef.style.backgroundColor = colors.colorHeader;
         //HACER FUNCION UPDATE LIBRARY
+        if (!watched.length) {
+          document.body.classList.remove('show-modal');
+          refs.modalContent.innerHTML = '';
+          Notiflix.Report.info(
+            'Now your Watched library is empty',
+            ' You can add movies again from home page',
+            'Got it!',
+            );
+
+          refs.library.classList.add('empty__library')
+          refs.library.innerHTML = `
+            <p>
+              "Your Watched" library is empty"
+            </p>`;
+          return;
+        }
         getArrayofMovies(watched)
       .then(data => {
         refs.library.innerHTML = createLibraryMarkup(data);
-        console.log("aqui estoy")
       })
     .catch(er => console.log(er));
     } else {
       onAddToWatched(id);
+      getArrayofMovies(watched)
+      .then(data => {
+        refs.library.innerHTML = createLibraryMarkup(data);
+      })
+    .catch(er => console.log(er));
       //   setWatchedLocalStorage(watched);
     }
     refs.modalContent.innerHTML = '';
@@ -63,6 +88,19 @@ function refresh(data, id) {
       queue.splice(queue.indexOf(id), 1);
       setQueueLocalStorage(queue);
       addQueueRef.style.backgroundColor = colors.colorHeader;
+      if (!queue.length) {
+        Notiflix.Report.info(
+          'Now your Queue library is empty',
+          ' You can add movies again from home page',
+          'Got it!',
+          );
+        refs.library.classList.add('empty__library')
+        refs.library.innerHTML = `
+        <p class="empty__library">
+            "Your Queue library is empty"
+        </p>`;
+        return;
+      }
       
       getArrayofMovies(queue)
       .then(data => {
