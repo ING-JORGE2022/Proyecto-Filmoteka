@@ -18,7 +18,9 @@ const watchedRef = document.querySelector('[data-id="watched-btn"]');
 const queueRef = document.querySelector('[data-id="queue-btn"]');
 const headerRef = document.querySelector('.header__container');
 export function loadIntoModal(id) {
+  Notiflix.Loading.standard();
   const film = getInfoMovie(id).then(data => {
+    Notiflix.Loading.remove();
     refresh(data, id);
   });
 }
