@@ -1,4 +1,3 @@
-@charset "UTF-8";
 h1 {
   color: #ff6b08;
 }
@@ -342,9 +341,6 @@ h1 {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-* {
   transition: all 0.3s ease;
 }
 
@@ -371,7 +367,7 @@ h1 {
 
 .hero {
   background-size: cover;
-  background-image: url("../images/Rectangle 1.jpg");
+  background-image: url("../images/bg3.jpg");
   height: 230px;
 }
 
@@ -409,6 +405,8 @@ h1 {
 }
 
 .search__header {
+  position: relative;
+  display: inline-block;
   display: flex;
   align-items: center;
   margin: 0 20px;
@@ -417,6 +415,7 @@ h1 {
 }
 
 .search__header .search__input {
+  padding-right: 30px;
   width: 316px;
   border: none;
   background-color: transparent;
@@ -428,6 +427,9 @@ h1 {
 }
 
 .search__header i {
+  position: absolute;
+  top: 45%;
+  right: 3px;
   font-size: 20px;
   margin-left: 10px;
   color: #ccc;
@@ -450,6 +452,11 @@ h1 {
   list-style: none;
 }
 
+.menu__header .active a:first-child {
+  border-bottom: 3px solid #FF6B08;
+  margin-right: 20px;
+}
+
 .menu__header li {
   margin-left: 39px;
 }
@@ -462,82 +469,73 @@ h1 {
   transition: color 0.3s ease;
 }
 
-.menu__header a:hover {
-  color: #ccc;
-}
-
-.menu__header .active a:first-child {
-  border-bottom: 3px solid #FF6B08;
-  margin-right: 20px;
-}
-
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .nav {
-    padding: 40px;
-  }
-  .search__header i {
-    position: absolute; /* Añadimos posición absoluta */
-    left: 180px;
-    bottom: 50px;
-    margin-left: 10px; /* Añadimos un margen izquierdo */
+    padding: 40px 20px 0px 30px;
   }
   .search__header {
     margin: 0;
-  }
-  .search__header .search__input {
-    width: 360px;
-    position: absolute;
-    margin-top: 60px;
-    transform: translate(-45%, -50%);
-  }
-  .search__header i {
-    margin-left: 5px;
   }
   .menu__header li {
-    margin-left: 10px;
+    margin: 0 10px;
   }
 }
-@media (min-width: 325px) and (max-width: 550px) {
-  .nav {
-    position: relative;
+@media screen and (min-width: 768px) and (max-width: 847px) {
+  .menu__header li {
+    margin: 0 10px;
   }
-  .search__header i {
-    position: absolute;
-    right: 10px;
-  }
-}
-@media (max-width: 320px) {
   .nav {
-    padding-top: 41px;
-    position: relative; /* Añadimos posición relativa */
+    padding: 40px 20px 0px 20px;
   }
   .search__header {
-    margin: 0;
+    margin: 0px;
   }
-  .search__header .search__input {
-    width: calc(100% - 40px); /* Ajustamos el ancho del .search__input */
-    margin-right: 10px; /* Añadimos un margen derecho */
+}
+@media screen and (min-width: 542px) and (max-width: 678px) {
+  .logo__filmoteka span {
+    display: none;
   }
-  .search__header i {
-    position: absolute; /* Añadimos posición absoluta */
-    left: 170px;
-    bottom: 50px;
-    margin-left: 10px; /* Añadimos un margen izquierdo */
+  .nav {
+    padding: 40px 20px 0px 50px;
+  }
+  .menu__header li {
+    margin: 0 5px 0 5px;
+  }
+}
+@media screen and (min-width: 466px) and (max-width: 542px) {
+  .logo__filmoteka span {
+    display: none;
+  }
+  .search__header {
+    position: absolute;
+    transform: translate(10%, 90%);
+  }
+  .nav {
+    padding: 60px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 466px) {
+  .nav {
+    padding: 70px 40px 0px 50px;
   }
   .logo__filmoteka span {
     display: none;
   }
-  .menu__header {
-    position: relative;
-    right: 0px;
+  .search__header {
+    width: 300px;
   }
-  .menu__header li {
-    margin-left: 10px;
-  }
-  .search__header .search__input {
-    width: 280px;
+  .search__header {
     position: absolute;
-    left: 50px;
+    transform: translate(-5%, 20%);
+    margin-top: 30px;
+  }
+  .menu__header {
+    padding-right: 10%;
+  }
+}
+@media screen and (min-width: 370px) and (min-width: 469px) {
+  .menu__header {
+    margin-right: 30px;
   }
 }
 .backdrop {
