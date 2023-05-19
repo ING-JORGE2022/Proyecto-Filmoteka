@@ -173,7 +173,7 @@ function createFilmCardMarkup(data) {
       height="357"
     />
     <div>
-      <h2 class="modal__title">${data.title}</h2>
+      <h2 class="modal__title">${data.title.toUpperCase()}</h2>
       <div class="modal__list-box">
         <ul class="modal__list list">
           <li class="modal__list-item">

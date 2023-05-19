@@ -2,11 +2,15 @@
 $color-header: #ffffff;
 $color-body: #000000;
 $color-footer: #545454;
+$color-logo-icon: #818181;
+$color-film-data-title: #8C8C8C;
 
 // Accent colors
 $color-accent: #ff6b08;
 $color-accent-sec: #ff6b01;
 $color-link-underline: #ff001b;
+$color-link-hover: #cccccc;
+
 
 // Background
 $color-bcg: #e5e5e5;
@@ -15,6 +19,7 @@ $color-bcg-footer: #f7f7f7;
 // Input forms
 $color-text-placeholder: #505050;
 $color-text-invalid: #ff705d;
+$color-inactive-form: #cccccc;
 
 // Util variables
 $font-basic: 'Roboto', sans-serif;
