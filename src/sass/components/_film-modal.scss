@@ -59,7 +59,7 @@ body.show-modal {
   margin-left: auto;
   margin-right: auto;
 
-  background-color: #ffffff;
+  background-color: $color-header;
   text-align: left;
 
   min-height: 200px;
@@ -139,7 +139,7 @@ body.show-modal {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
-    color: #8c8c8c;
+    color: $color-film-data-title;
   }
 
   &__list-item:not(:last-child) {
@@ -153,27 +153,27 @@ body.show-modal {
     font-weight: 500;
     font-size: 12px;
     line-height: calc(14 / 12);
-    color: #000000;
+    color: $color-body;
   }
 
   &__list-vote {
     padding: 1px 9px;
-    background: #ff6b01;
+    background: $color-accent-sec;
     border-radius: 5px;
 
-    color: #ffffff;
+    color: $color-header;
   }
 
   &__list-slesh {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
-    color: #8c8c8c;
+    color: $color-film-data-title;
   }
 
   &__list-votes {
     padding: 1px 9px;
-    background: #f7f7f7;
+    background: $color-bcg-footer;
     border-radius: 5px;
   }
 
@@ -225,7 +225,7 @@ body.show-modal {
     text-transform: uppercase;
 
     border-radius: 5px;
-    border: 1px solid #000000;
+    border: 1px solid $color-body;
     background-color: transparent;
     cursor: pointer;
 
@@ -234,8 +234,8 @@ body.show-modal {
 
     &:hover,
     &:focus {
-      color: #ffffff;
-      background-color: #ff6b01;
+      color: $color-header;
+      background-color: $color-accent-sec;
       border: none;
     }
 

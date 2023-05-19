@@ -36,6 +36,14 @@ const input = document.querySelector('.search__input');
 const btnSearch = document.querySelector('.bx-search');
 
 btnSearch.addEventListener('click', onSearchBtn);
+input.addEventListener('keydown', onEnterKeyPress);
+
+function onEnterKeyPress(event) {
+  const ENTER_KEY_CODE = 'Enter';
+  if (event.code === ENTER_KEY_CODE) {
+    onSearchBtn(event);
+  }
+}
 
 function onSearchBtn(e) {
   e.preventDefault();
