@@ -70,12 +70,12 @@
     font-size: 12px;
     font-weight: 700;
     line-height: 16px;
-    color: #000000;
+    color: $color-body;
   }
 
   .movie__descr {
     font-family: Roboto,sans-serif;
-    color: #ff6b08;
+    color: $color-accent;
     font-size: 12px;
     font-weight: 500;
   }
